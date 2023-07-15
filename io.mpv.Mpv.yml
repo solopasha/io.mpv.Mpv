@@ -626,6 +626,7 @@ modules:
     no-autogen: true
     make-install-args:
       - SCRIPTS_DIR=/app/etc/mpv/scripts
+      - PREFIX=/app
     sources:
       - type: archive
         archive-type: tar
@@ -681,7 +682,7 @@ modules:
         x-checker-data:
           # Requests doesn't work with > 1.26.x for now
           # https://github.com/flathub/io.mpv.Mpv/pull/190#issuecomment-1523855709
-          versions: {'>=': 1.21.1, <: '1.27'}
+          versions: { '>=': 1.21.1, <: '1.27' }
           type: pypi
           name: urllib3
           packagetype: bdist_wheel
