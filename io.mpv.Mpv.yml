@@ -22,11 +22,23 @@ finish-args:
   - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   - --filesystem=xdg-run/pipewire-0:ro
 
-#  mpris support via dbus
+  #  mpris support via dbus
   - --own-name=org.mpris.MediaPlayer2.mpv.*
   - --talk-name=org.gnome.SessionManager
 
 cleanup:
+  - /doc
+  - /include
+  - /lib/cmake
+  - /lib/libexec
+  - /lib/metatypes
+  - /lib/pkgconfig
+  - /lib/systemd
+  - /mkspecs
+  - /modules
+  - /share/doc
+  - /share/man
+  - '*.prl'
   - '*.la'
   - '*.a'
 
@@ -68,22 +80,19 @@ modules:
     no-autogen: true
     cleanup:
       - /bin
-      - /include
-      - /lib/pkgconfig
-      - /share/man
     sources:
       - type: git
         url: https://github.com/LuaJIT/LuaJIT.git
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: ff6c496ba1b51ed360065cbc5259f62becd70daa
-#       x-checker-data:
-#         type: json
-#         url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
-#         commit-query: first( .[].sha )
-#         version-query: first( .[].sha )
-#         timestamp-query: first( .[].commit.committer.date )
+        commit: becf5cc65d966a8926466dd43407c48bfea0fa13
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
+          commit-query: first( .[].sha )
+          version-query: first( .[].sha )
+          timestamp-query: first( .[].commit.committer.date )
       - type: shell
         commands:
           - sed -i 's|/usr/local|/app|' ./Makefile
@@ -98,8 +107,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.07.06/yt-dlp.tar.gz
-        sha256: 6d2115b84b6c11867f92cf4c23705b536bfa0ba9d538b1885f52da6756f8c980
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.09.24/yt-dlp.tar.gz
+        sha256: 689aaab448763a9efb339e608346d42aa3d4f776288fc1f4f223142ac23a5abf
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -113,9 +122,6 @@ modules:
       - -DBUILD_STATIC=0
     cleanup:
       - /bin
-      - /include
-      - /lib/pkgconfig
-      - /share/man
     sources:
       - type: archive
         url: https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.8.tar.xz
@@ -127,9 +133,6 @@ modules:
           url-template: https://www.freedesktop.org/software/uchardet/releases/uchardet-$version.tar.xz
 
   - name: libass
-    cleanup:
-      - /include
-      - /lib/pkgconfig
     config-opts:
       - --disable-static
     sources:
@@ -142,10 +145,6 @@ modules:
           tag-pattern: ^(\d\.\d{1,3}\.\d{1,2})$
 
   - name: libv4l2
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/man
     config-opts:
       - --disable-static
       - --disable-bpf
@@ -165,9 +164,6 @@ modules:
     config-opts:
       - --disable-static
       - --disable-example-progs
-    cleanup:
-      - /include
-      - /lib/pkgconfig
     sources:
       - type: archive
         url: https://ftp.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
@@ -186,9 +182,6 @@ modules:
     config-opts:
       - --disable-static
       - --disable-example-progs
-    cleanup:
-      - /include
-      - /lib/pkgconfig
     sources:
       - type: archive
         url: https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
@@ -206,9 +199,6 @@ modules:
   - name: libdvdread
     config-opts:
       - --disable-static
-    cleanup:
-      - /include
-      - /lib/pkgconfig
     sources:
       - type: archive
         url: https://download.videolan.org/pub/videolan/libdvdread/6.1.3/libdvdread-6.1.3.tar.bz2
@@ -222,9 +212,6 @@ modules:
   - name: libdvdnav
     config-opts:
       - --disable-static
-    cleanup:
-      - /include
-      - /lib/pkgconfig
     sources:
       - type: archive
         url: https://download.videolan.org/pub/videolan/libdvdnav/6.1.1/libdvdnav-6.1.1.tar.bz2
@@ -239,9 +226,6 @@ modules:
     config-opts:
       - --disable-static
       - --disable-bdjava-jar
-    cleanup:
-      - /include
-      - /lib/pkgconfig
     sources:
       - sha256: a88aa0ebe4c98a77f7aeffd92ab3ef64ac548c6b822e8248a8b926725bea0a39
         type: archive
@@ -256,9 +240,6 @@ modules:
     config-opts:
       - --disable-static
       - --disable-bdjava-jar
-    cleanup:
-      - /include
-      - /lib/pkgconfig
     sources:
       - sha256: 478ffd68a0f5dde8ef6ca989b7f035b5a0a22c599142e5cd3ff7b03bbebe5f2b
         type: archive
@@ -272,10 +253,6 @@ modules:
   - name: zimg
     config-opts:
       - --disable-static
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/doc
     sources:
       - type: archive
         archive-type: tar
@@ -290,9 +267,7 @@ modules:
 
   - name: rubberband
     buildsystem: meson
-    cleanup:
-      - /include
-      - /lib/pkgconfig
+
     sources:
       - type: git
         url: https://github.com/breakfastquay/rubberband.git
@@ -346,17 +321,13 @@ modules:
           tag-pattern: ^n([\d.]+)$
 
   - name: x264
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/man
     config-opts:
       - --disable-cli
       - --enable-shared
     sources:
       - type: git
         url: https://code.videolan.org/videolan/x264.git
-        commit: a8b68ebfaa68621b5ac8907610d3335971839d52
+        commit: 5a9dfddea49aae58fd18750d130301c947f7d217
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
@@ -372,10 +343,6 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_STATIC=0
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/man
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
@@ -402,9 +369,6 @@ modules:
     buildsystem: autotools
     config-opts:
       - --disable-static
-    cleanup:
-      - /include
-      - /lib/pkgconfig
     sources:
       - type: archive
         archive-type: tar
@@ -438,8 +402,6 @@ modules:
 
   - name: ffmpeg
     cleanup:
-      - /include
-      - /lib/pkgconfig
       - /share/ffmpeg/examples
     config-opts:
       - --disable-debug
@@ -480,9 +442,6 @@ modules:
 
   - name: libsixel
     buildsystem: meson
-    cleanup:
-      - /include
-      - /lib/pkgconfig
     sources:
       - type: archive
         archive-type: tar
@@ -501,8 +460,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/vapoursynth/vapoursynth.git
-        tag: R63
-        commit: f7f4e42193b25edaf35042795b39c80173e1b55e
+        tag: R64
+        commit: 3c3271769030d3f9ce8f84df7bccb7c2db3e33c0
         x-checker-data:
           type: git
           tag-pattern: ^R([\d.]+)$
@@ -512,19 +471,16 @@ modules:
     config-opts:
       - -Dvulkan=enabled
       - -Dshaderc=enabled
-    cleanup:
-      - /include
-      - /lib/pkgconfig
     sources:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
         mirror-urls:
           - https://github.com/haasn/libplacebo.git
-        tag: v6.292.1
-        commit: 06b51c6c1bc8be6153823929496eed255dd76e69
-#       x-checker-data:
-#         type: git
-#         tag-pattern: ^v([\d.]+)$
+        tag: v6.338.0
+        commit: 4cadbe71fdb8a7523fcfaccb5e6e41bb8cd95c04
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
     modules:
       - name: shaderc
         buildsystem: cmake-ninja
@@ -543,11 +499,11 @@ modules:
         sources:
           - type: git
             url: https://github.com/google/shaderc.git
-            tag: v2023.4
-            commit: 45b735dfddefe26a99b77e5a74e30d860713ac64
-#           x-checker-data:
-#             type: git
-#             tag-pattern: ^v(\d{4}\.\d{1,2})$
+            tag: v2023.6
+            commit: 39aa522785f130130927cd4766a37e8813af6d66
+            x-checker-data:
+              type: git
+              tag-pattern: ^v(\d{4}\.\d{1,2})$
           - type: git
             url: https://github.com/KhronosGroup/SPIRV-Tools.git
             tag: v2023.2
@@ -564,14 +520,17 @@ modules:
             x-checker-data:
               type: git
               tag-pattern: ^sdk-([\d.]+)$
+              versions:
+                ==: 1.3.250.1
+
           - type: git
             url: https://github.com/KhronosGroup/glslang.git
-            tag: 12.2.0
-            commit: d1517d64cfca91f573af1bf7341dc3a5113349c0
+            tag: 13.0.0
+            commit: f1cb8608b390a7f51b4ae0d62cd415ba47a59b86
             dest: third_party/glslang
-#           x-checker-data:
-#             type: git
-#             tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
+            x-checker-data:
+              type: git
+              tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
 
   - name: mpv
     buildsystem: meson
@@ -586,9 +545,6 @@ modules:
       - -Dsdl2=enabled
       - -Dshaderc=enabled
       - -Dvulkan=enabled
-    cleanup:
-      - /include
-      - /lib/pkgconfig
     post-install:
       - mv /app/bin/mpv /app/bin/mpv-bin
       # save screenshots at xdg-pictures/mpv
@@ -616,7 +572,7 @@ modules:
           - mv $FLATPAK_ID.appdata.xml /app/share/appdata/$FLATPAK_ID.appdata.xml
           - chmod 644 /app/share/appdata/$FLATPAK_ID.appdata.xml
 
-# Scripts for mpv
+  # Scripts for mpv
   - name: mpv-wrapper
     buildsystem: simple
     build-commands:
@@ -629,11 +585,12 @@ modules:
     no-autogen: true
     make-install-args:
       - SCRIPTS_DIR=/app/etc/mpv/scripts
+      - PREFIX=/app
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/1.0
-        sha256: d8983f4f02091f28921719f9f8457b7eaf88c1f1c5e3d15d830dd928b00f3ded
+        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/1.1
+        sha256: 08d6b53a41224710ebed1c4d6daee815686e0f2f10e3f81778f4411562ed5958
         x-checker-data:
           type: json
           url: https://api.github.com/repos/hoyon/mpv-mpris/releases/latest
@@ -657,7 +614,6 @@ modules:
           url: https://ftp.gnu.org/gnu/bc/
           version-pattern: bc-(\d\.\d+\.?\d*).tar.gz
           url-template: https://ftp.gnu.org/gnu/bc/bc-$version.tar.gz
-
 
   # This mpv plugin prevents screen blanking in GNOME (wayland) while playing media.
   - name: mpv_inhibit_gnome
