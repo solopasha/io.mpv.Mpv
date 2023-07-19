@@ -544,8 +544,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/google/shaderc.git
-            tag: v2023.4
-            commit: 45b735dfddefe26a99b77e5a74e30d860713ac64
+            tag: v2023.5
+            commit: 5b892551dd02bbf8704adbc3fcde2fd645f333b2
             x-checker-data:
               type: git
               tag-pattern: ^v(\d{4}\.\d{1,2})$
@@ -567,8 +567,8 @@ modules:
               tag-pattern: ^sdk-([\d.]+)$
           - type: git
             url: https://github.com/KhronosGroup/glslang.git
-            tag: 12.2.0
-            commit: d1517d64cfca91f573af1bf7341dc3a5113349c0
+            tag: 12.3.0
+            commit: 9b1a0f4d3e054d9b21ae584a20c06c98628c3015
             dest: third_party/glslang
             x-checker-data:
               type: git
