@@ -1,6 +1,6 @@
 id: io.mpv.Mpv
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: "22.08"
 sdk: org.freedesktop.Sdk
 command: mpv
 rename-desktop-file: mpv.desktop
@@ -27,8 +27,8 @@ finish-args:
   - --talk-name=org.gnome.SessionManager
 
 cleanup:
-  - '*.la'
-  - '*.a'
+  - "*.la"
+  - "*.a"
 
 modules:
   - name: libXmu
@@ -47,7 +47,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/astrand/xclip.git
-        tag: '0.13'
+        tag: "0.13"
         commit: 9aa7090c3b8b437c6489edca32ae43d82e0c1281
         x-checker-data:
           type: git
@@ -330,7 +330,7 @@ modules:
 
   - name: nv-codec-headers
     cleanup:
-      - '*'
+      - "*"
     no-autogen: true
     make-install-args:
       - PREFIX=/app
@@ -379,7 +379,7 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        tag: '3.5'
+        tag: "3.5"
         commit: f0c1022b6be121a753ff02853fbe33da71988656
         x-checker-data:
           type: git
@@ -601,11 +601,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-      - type: patch
-        paths:
-          - 362256edbc4f95c63e69c1fa8c8dce9cc6c44288.patch
-          - 94c189dae76ba280d9883b16346c3dfb9720687e.patch
-          - 3a2f8d42ab203c961e50ce198ca4eb232de3819a.patch
       - type: file
         path: io.mpv.Mpv.appdata.xml
       # Automatically update version and date in io.mpv.Mpv.appdata.xml
@@ -682,7 +677,7 @@ modules:
         x-checker-data:
           # Requests doesn't work with > 1.26.x for now
           # https://github.com/flathub/io.mpv.Mpv/pull/190#issuecomment-1523855709
-          versions: {'>=': 1.21.1, <: '1.27'}
+          versions: { ">=": 1.21.1, <: "1.27" }
           type: pypi
           name: urllib3
           packagetype: bdist_wheel
