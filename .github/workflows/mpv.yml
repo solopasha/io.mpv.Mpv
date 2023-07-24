@@ -4,7 +4,7 @@ on:
 name: CI
 jobs:
   flatpak:
-    name: "Flatpak"
+    name: 'Flatpak'
     runs-on: ubuntu-latest
     container:
       image: bilelmoussaoui/flatpak-github-actions:freedesktop-22.08
@@ -17,7 +17,8 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           path: .flatpak-builder
-          key: mpv-flatpak
+          key: mpv-flatpak-${{ github.sha }}
+          restore-keys: mpv-flatpak-
 
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6.1
         with:
