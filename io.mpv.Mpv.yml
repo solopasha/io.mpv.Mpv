@@ -77,7 +77,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 8635cbabf3094c4d8bd00578c7d812bea87bb2d3
+        commit: 72efc42ef2258086a9cb797c676e2916b0a9e7e1
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -521,8 +521,8 @@ modules:
         url: https://code.videolan.org/videolan/libplacebo.git
         mirror-urls:
           - https://github.com/haasn/libplacebo.git
-        tag: v6.292.0
-        commit: ef202bcff8cce0e208e244e453d62dcad4c350ca
+        tag: v6.292.1
+        commit: 06b51c6c1bc8be6153823929496eed255dd76e69
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -544,8 +544,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/google/shaderc.git
-            tag: v2023.5
-            commit: 5b892551dd02bbf8704adbc3fcde2fd645f333b2
+            tag: v2023.6
+            commit: 39aa522785f130130927cd4766a37e8813af6d66
             x-checker-data:
               type: git
               tag-pattern: ^v(\d{4}\.\d{1,2})$
