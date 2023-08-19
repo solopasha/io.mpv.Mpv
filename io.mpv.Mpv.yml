@@ -77,7 +77,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 8635cbabf3094c4d8bd00578c7d812bea87bb2d3
+        commit: 72efc42ef2258086a9cb797c676e2916b0a9e7e1
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -521,8 +521,8 @@ modules:
         url: https://code.videolan.org/videolan/libplacebo.git
         mirror-urls:
           - https://github.com/haasn/libplacebo.git
-        tag: v6.292.0
-        commit: ef202bcff8cce0e208e244e453d62dcad4c350ca
+        tag: v6.292.1
+        commit: 06b51c6c1bc8be6153823929496eed255dd76e69
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -544,8 +544,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/google/shaderc.git
-            tag: v2023.5
-            commit: 5b892551dd02bbf8704adbc3fcde2fd645f333b2
+            tag: v2023.6
+            commit: 39aa522785f130130927cd4766a37e8813af6d66
             x-checker-data:
               type: git
               tag-pattern: ^v(\d{4}\.\d{1,2})$
@@ -908,8 +908,8 @@ modules:
       - pip3 install --prefix=/app click-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/1a/70/e63223f8116931d365993d4a6b7ef653a4d920b41d03de7c59499962821f/click-8.1.6-py3-none-any.whl
-        sha256: fa244bb30b3b5ee2cae3da8f55c9e5e0c0e86093306301fb418eb9dc40fbded5
+        url: https://files.pythonhosted.org/packages/00/2e/d53fa4befbf2cfa713304affc7ca780ce4fc1fd8710527771b58311a3229/click-8.1.7-py3-none-any.whl
+        sha256: ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28
         x-checker-data:
           type: pypi
           name: click
