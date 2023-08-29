@@ -86,7 +86,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 03c31124cc3b521ef54fe398e10fa55660a5057d
+        commit: 83954100dba9fc0cf5eeaf122f007df35ec9a604
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -521,7 +521,7 @@ modules:
               type: git
               tag-pattern: ^sdk-([\d.]+)$
               versions:
-                '==': 1.3.250.1
+                ==: 1.3.250.1
 
           - type: git
             url: https://github.com/KhronosGroup/glslang.git
@@ -632,7 +632,7 @@ modules:
         x-checker-data:
           # Requests doesn't work with > 1.26.x for now
           # https://github.com/flathub/io.mpv.Mpv/pull/190#issuecomment-1523855709
-          versions: { '>=': 1.21.1, <: '1.27' }
+          versions: {'>=': 1.21.1, <: '1.27'}
           type: pypi
           name: urllib3
           packagetype: bdist_wheel
