@@ -86,7 +86,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 7a77a3cd85ed49498cc3b17e70c46ad518aebb72
+        commit: e897c5743f97a6b05c59852709092e7da4119914
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -760,8 +760,8 @@ modules:
       - pip3 install --prefix=/app rarfile-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/95/f4/c92fab227c7457e3b76a4096ccb655ded9deac869849cb03afbe55dfdc1e/rarfile-4.0-py3-none-any.whl
-        sha256: 1094869119012f95c31a6f22cc3a9edbdca61861b805241116adbe2d737b68f8
+        url: https://files.pythonhosted.org/packages/75/34/f06b7de74bcea328d8d7a950aad099c1100578cc3960ffc5a00d30ab511c/rarfile-4.1-py3-none-any.whl
+        sha256: 17d7554c93c776ceae677e9d927051267d4c5eba38bf64b9cc89a415d9a5f901
         x-checker-data:
           type: pypi
           name: rarfile
@@ -837,8 +837,8 @@ modules:
         --prefix=${FLATPAK_DEST} "typing_extensions" --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/ec/6b/63cc3df74987c36fe26157ee12e09e8f9db4de771e0f3404263117e75b95/typing_extensions-4.7.1-py3-none-any.whl
-        sha256: 440d5dd3af93b060174bf433bccd69b0babc3b15b1a8dca43789fd7f61514b36
+        url: https://files.pythonhosted.org/packages/24/21/7d397a4b7934ff4028987914ac1044d3b7d52712f30e2ac7a2ae5bc86dd0/typing_extensions-4.8.0-py3-none-any.whl
+        sha256: 8f92fc8806f9a6b641eaa5318da32b44d401efaac0f6678c9bc448ba3605faa0
         x-checker-data:
           name: typing_extensions
           packagetype: bdist_wheel
