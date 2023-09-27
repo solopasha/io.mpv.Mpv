@@ -460,8 +460,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/vapoursynth/vapoursynth.git
-        tag: R63
-        commit: f7f4e42193b25edaf35042795b39c80173e1b55e
+        tag: R64
+        commit: 3c3271769030d3f9ce8f84df7bccb7c2db3e33c0
         x-checker-data:
           type: git
           tag-pattern: ^R([\d.]+)$
@@ -476,8 +476,8 @@ modules:
         url: https://code.videolan.org/videolan/libplacebo.git
         mirror-urls:
           - https://github.com/haasn/libplacebo.git
-        tag: v6.292.1
-        commit: 06b51c6c1bc8be6153823929496eed255dd76e69
+        tag: v6.338.0
+        commit: 4cadbe71fdb8a7523fcfaccb5e6e41bb8cd95c04
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
