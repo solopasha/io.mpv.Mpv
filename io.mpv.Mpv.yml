@@ -474,6 +474,7 @@ modules:
     buildsystem: meson
     config-opts:
       - -Dbuild-date=false
+      - -Dlibmpv=true
       - -Dmanpage-build=disabled
     post-install:
       - mv /app/bin/mpv /app/bin/mpv-bin
