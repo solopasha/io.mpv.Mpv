@@ -265,7 +265,7 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/x264.git
-        commit: 5a9dfddea49aae58fd18750d130301c947f7d217
+        commit: 5f84d403fcaf15b717a5d08d07e4411f0dcb0013
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
@@ -437,8 +437,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/google/shaderc.git
-            tag: v2023.6
-            commit: 39aa522785f130130927cd4766a37e8813af6d66
+            tag: v2023.7
+            commit: 3882b16417077aa8eaa7b5775920e7ba4b8a224d
             x-checker-data:
               type: git
               tag-pattern: ^v(\d{4}\.\d{1,2})$
