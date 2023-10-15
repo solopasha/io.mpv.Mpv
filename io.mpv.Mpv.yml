@@ -107,8 +107,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.10.07/yt-dlp.tar.gz
-        sha256: 39d1a69242cc8235fe1f3e387cd383aae239e563796efb9de0f516133ee14870
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.10.13/yt-dlp.tar.gz
+        sha256: 64944f4452a7657b5fb31ae55d823d9411a1a29f9c1071d33fa3e6286e20522a
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -265,7 +265,7 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/x264.git
-        commit: 5a9dfddea49aae58fd18750d130301c947f7d217
+        commit: 5f84d403fcaf15b717a5d08d07e4411f0dcb0013
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
@@ -437,8 +437,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/google/shaderc.git
-            tag: v2023.6
-            commit: 39aa522785f130130927cd4766a37e8813af6d66
+            tag: v2023.7
+            commit: 3882b16417077aa8eaa7b5775920e7ba4b8a224d
             x-checker-data:
               type: git
               tag-pattern: ^v(\d{4}\.\d{1,2})$
@@ -463,8 +463,8 @@ modules:
 
           - type: git
             url: https://github.com/KhronosGroup/glslang.git
-            tag: 13.0.0
-            commit: f1cb8608b390a7f51b4ae0d62cd415ba47a59b86
+            tag: 13.1.0
+            commit: be564292f00c5bf0d7251c11f1c9618eb1117762
             dest: third_party/glslang
             x-checker-data:
               type: git
