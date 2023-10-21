@@ -86,7 +86,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 656ecbcf8f669feb94e0d0ec4b4f59190bcd2e48
+        commit: e826d0c101d750fac8334d71e221c50d8dbe236c
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -414,8 +414,8 @@ modules:
         url: https://code.videolan.org/videolan/libplacebo.git
         mirror-urls:
           - https://github.com/haasn/libplacebo.git
-        tag: v6.338.0
-        commit: 4cadbe71fdb8a7523fcfaccb5e6e41bb8cd95c04
+        tag: v6.338.1
+        commit: 2805a0d01c029084ab36bf5d0e3c8742012a0b27
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -463,8 +463,8 @@ modules:
 
           - type: git
             url: https://github.com/KhronosGroup/glslang.git
-            tag: 13.1.0
-            commit: be564292f00c5bf0d7251c11f1c9618eb1117762
+            tag: 13.1.1
+            commit: 36d08c0d940cf307a23928299ef52c7970d8cee6
             dest: third_party/glslang
             x-checker-data:
               type: git
