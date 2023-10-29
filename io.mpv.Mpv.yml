@@ -265,7 +265,7 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/x264.git
-        commit: 5f84d403fcaf15b717a5d08d07e4411f0dcb0013
+        commit: d46938dec10ceab74eb26d281d434fa284c7fbb9
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
@@ -398,8 +398,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/vapoursynth/vapoursynth.git
-        tag: R64
-        commit: 3c3271769030d3f9ce8f84df7bccb7c2db3e33c0
+        tag: R65
+        commit: 3157049549a0940359b37004aeeeebd8f1db665e
         x-checker-data:
           type: git
           tag-pattern: ^R([\d.]+)$
