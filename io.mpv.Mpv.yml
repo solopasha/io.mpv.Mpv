@@ -375,7 +375,7 @@ modules:
       - -DCMAKE_BUILD_TYPE=Release
       - -DSPIRV_WERROR=Off
       - -DBUILD_SHARED_LIBS=ON
-      - -DSPIRV_TOOLS_BUILD_STATIC=OFF
+      - -DSPIRV_SKIP_EXECUTABLES=ON
       - -DSPIRV-Headers_SOURCE_DIR=/app
     sources:
       - type: git
@@ -385,6 +385,22 @@ modules:
           type: git
           tag-pattern: ^v(\d{4}\.\d{1})$
 
+  - name: glslang
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DENABLE_GLSLANG_BINARIES=OFF
+      - -DENABLE_CTEST=OFF
+    sources:
+      - type: git
+        url: https://github.com/KhronosGroup/glslang.git
+        tag: 13.1.1
+        commit: 36d08c0d940cf307a23928299ef52c7970d8cee6
+        dest: third_party/glslang
+        x-checker-data:
+          type: git
+          tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
+
   - name: shaderc
     buildsystem: cmake-ninja
     builddir: true
@@ -393,8 +409,6 @@ modules:
       - -DSHADERC_SKIP_COPYRIGHT_CHECK=ON
       - -DSHADERC_SKIP_EXAMPLES=ON
       - -DSHADERC_SKIP_TESTS=ON
-      - -DSPIRV_SKIP_EXECUTABLES=ON
-      - -DENABLE_GLSLANG_BINARIES=OFF
     cleanup:
       - /bin
       - /include
@@ -411,21 +425,6 @@ modules:
       - type: shell
         commands:
           - sed '/examples/d;/third_party/d' -i CMakeLists.txt
-
-  - name: glslang
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
-      - -DENABLE_CTEST=OFF
-    sources:
-      - type: git
-        url: https://github.com/KhronosGroup/glslang.git
-        tag: 13.1.1
-        commit: 36d08c0d940cf307a23928299ef52c7970d8cee6
-        dest: third_party/glslang
-        x-checker-data:
-          type: git
-          tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
 
   - name: ffmpeg
     cleanup:
