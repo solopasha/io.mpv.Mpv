@@ -409,6 +409,7 @@ modules:
       - -DSHADERC_SKIP_COPYRIGHT_CHECK=ON
       - -DSHADERC_SKIP_EXAMPLES=ON
       - -DSHADERC_SKIP_TESTS=ON
+      - -Dglslang_SOURCE_DIR=/app/include/glslang
     cleanup:
       - /bin
       - /include
