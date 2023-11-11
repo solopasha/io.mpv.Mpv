@@ -434,9 +434,6 @@ modules:
         commands:
           - sed '/examples/d;/third_party/d' -i CMakeLists.txt
           - sed '/build-version/d' -i glslc/CMakeLists.txt
-          - echo \"shaderc $(grep -m1 -o '^v[[:digit:]]\{4\}\.[[:digit:]]\(-dev\)\? [[:digit:]]\{4\}-[[:digit:]]\{2\}-[[:digit:]]\{2\}$' CHANGES)\" > glslc/src/build-version.inc
-          - echo \"spirv-tools $(grep -m1 -o '^v[[:digit:]]\{4\}\.[[:digit:]]\(-dev\)\? [[:digit:]]\{4\}-[[:digit:]]\{2\}-[[:digit:]]\{2\}$' /usr/share/doc/spirv-tools/CHANGES)\" >> glslc/src/build-version.inc
-          - echo \"glslang 36d08c0d940cf307a23928299ef52c7970d8cee6\" >> glslc/src/build-version.inc
 
   - name: ffmpeg
     cleanup:
