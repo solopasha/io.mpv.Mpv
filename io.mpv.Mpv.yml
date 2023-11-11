@@ -371,6 +371,11 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DSPIRV_WERROR=Off
+      - -DBUILD_SHARED_LIBS=ON
+      - -DSPIRV_TOOLS_BUILD_STATIC=OFF
+      - -DSPIRV-Headers_SOURCE_DIR=/app
     sources:
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Tools.git
