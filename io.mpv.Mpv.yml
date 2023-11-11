@@ -86,7 +86,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: b94fbfbee9e7dd0979e35aacea7fcdd43905789b
+        commit: 69bbbf77363ceb00ad2653a7729a5c9e8316e61f
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -372,8 +372,8 @@ modules:
         url: https://github.com/FFmpeg/FFmpeg.git
         mirror-urls:
           - https://git.ffmpeg.org/ffmpeg.git
-        commit: ea3d24bbe3c58b171e55fe2151fc7ffaca3ab3d2
-        tag: n6.0
+        commit: d4ff0020b40b524a490cf62eccbd3a318f4c0e58
+        tag: n6.1
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
