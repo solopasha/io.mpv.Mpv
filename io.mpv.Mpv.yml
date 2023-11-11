@@ -1,11 +1,10 @@
 id: io.mpv.Mpv
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 command: mpv
 rename-desktop-file: mpv.desktop
 rename-icon: mpv
-
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -25,6 +24,11 @@ finish-args:
   #  mpris support via dbus
   - --own-name=org.mpris.MediaPlayer2.mpv.*
   - --talk-name=org.gnome.SessionManager
+build-options:
+  strip: true
+  no-debuginfo: true
+  cflags: -DNDEBUG -g0
+  cxxflags: -DNDEBUG -g0
 
 cleanup:
   - /doc
@@ -338,6 +342,99 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
 
+  - name: SPIRV-Headers
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DSPIRV_SKIP_EXECUTABLES=ON
+    cleanup:
+      - /bin
+    sources:
+      - type: git
+        url: https://github.com/KhronosGroup/SPIRV-Headers.git
+        commit: e867c06631767a2d96424cbec530f9ee5e78180f
+        x-checker-data:
+          type: json
+          parent-id: glslang-git-0
+          commit-data-url: >-
+            "https://github.com/KhronosGroup/glslang/raw/\($parent.new.tag//$parent.current.tag)/known_good.json"
+          commit-query: .commits[] | select(.name=="spirv-tools/external/spirv-headers") | .commit
+
+  - name: SPIRV-Tools
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DSPIRV_WERROR=Off
+      - -DBUILD_SHARED_LIBS=ON
+      - -DSPIRV_SKIP_EXECUTABLES=ON
+      - -DSPIRV-Headers_SOURCE_DIR=/app
+    sources:
+      - type: git
+        url: https://github.com/KhronosGroup/SPIRV-Tools.git
+        commit: 360d469b9eac54d6c6e20f609f9ec35e3a5380ad
+        x-checker-data:
+          type: json
+          parent-id: glslang-git-0
+          commit-data-url: >-
+            "https://github.com/KhronosGroup/glslang/raw/\($parent.new.tag//$parent.current.tag)/known_good.json"
+          commit-query: .commits[] | select(.name=="spirv-tools") | .commit
+
+  - name: glslang
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DENABLE_GLSLANG_BINARIES=OFF
+      - -DENABLE_CTEST=OFF
+      - -DBUILD_SHARED_LIBS=ON
+    sources:
+      - type: git
+        url: https://github.com/KhronosGroup/glslang.git
+        tag: 13.1.1
+        commit: 36d08c0d940cf307a23928299ef52c7970d8cee6
+        x-checker-data:
+          type: git
+          tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
+      - type: patch
+        paths:
+          - 0001-pkg-config-compatibility.patch
+
+  - name: shaderc
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DSHADERC_SKIP_COPYRIGHT_CHECK=ON
+      - -DSHADERC_SKIP_EXAMPLES=ON
+      - -DSHADERC_SKIP_TESTS=ON
+      - -Dglslang_SOURCE_DIR=/app/include/glslang
+    cleanup:
+      - /bin
+      - /include
+      - /lib/cmake
+      - /lib/pkgconfig
+    sources:
+      - type: git
+        url: https://github.com/google/shaderc.git
+        tag: v2023.7
+        commit: 3882b16417077aa8eaa7b5775920e7ba4b8a224d
+        x-checker-data:
+          type: git
+          tag-pattern: ^v(\d{4}\.\d{1,2})$
+      - type: patch
+        paths:
+          - 1276.patch
+      - type: shell
+        commands:
+          - sed '/examples/d;/third_party/d' -i CMakeLists.txt
+          - sed '/build-version/d' -i glslc/CMakeLists.txt
+          - echo \"shaderc $(grep -m1 -o '^v[[:digit:]]\{4\}\.[[:digit:]]\(-dev\)\?
+            [[:digit:]]\{4\}-[[:digit:]]\{2\}-[[:digit:]]\{2\}$' CHANGES)\" > glslc/src/build-version.inc
+          - echo \"spirv-tools $(grep -m1 -o '^v[[:digit:]]\{4\}\.[[:digit:]]\(-dev\)\?
+            [[:digit:]]\{4\}-[[:digit:]]\{2\}-[[:digit:]]\{2\}$' /app/share/doc/spirv-tools/CHANGES)\"
+            >> glslc/src/build-version.inc
+          - echo \"glslang 36d08c0d940cf307a23928299ef52c7970d8cee6\" >> glslc/src/build-version.inc
+
   - name: ffmpeg
     cleanup:
       - /share/ffmpeg/examples
@@ -366,7 +463,8 @@ modules:
       - --enable-libx264
       - --enable-libx265
       - --enable-libwebp
-
+      - --enable-vulkan
+      - --enable-libshaderc
     sources:
       - type: git
         url: https://github.com/FFmpeg/FFmpeg.git
@@ -409,6 +507,7 @@ modules:
     config-opts:
       - -Dvulkan=enabled
       - -Dshaderc=enabled
+      - -Dglslang=enabled
     sources:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
@@ -419,56 +518,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-    modules:
-      - name: shaderc
-        buildsystem: cmake-ninja
-        builddir: true
-        config-opts:
-          - -DSHADERC_SKIP_COPYRIGHT_CHECK=ON
-          - -DSHADERC_SKIP_EXAMPLES=ON
-          - -DSHADERC_SKIP_TESTS=ON
-          - -DSPIRV_SKIP_EXECUTABLES=ON
-          - -DENABLE_GLSLANG_BINARIES=OFF
-        cleanup:
-          - /bin
-          - /include
-          - /lib/cmake
-          - /lib/pkgconfig
-        sources:
-          - type: git
-            url: https://github.com/google/shaderc.git
-            tag: v2023.7
-            commit: 3882b16417077aa8eaa7b5775920e7ba4b8a224d
-            x-checker-data:
-              type: git
-              tag-pattern: ^v(\d{4}\.\d{1,2})$
-          - type: git
-            url: https://github.com/KhronosGroup/SPIRV-Tools.git
-            tag: v2023.2
-            commit: 44d72a9b36702f093dd20815561a56778b2d181e
-            dest: third_party/spirv-tools
-            x-checker-data:
-              type: git
-              tag-pattern: ^v(\d{4}\.\d{1})$
-          - type: git
-            url: https://github.com/KhronosGroup/SPIRV-Headers.git
-            tag: sdk-1.3.250.1
-            commit: 268a061764ee69f09a477a695bf6a11ffe311b8d
-            dest: third_party/spirv-headers
-            x-checker-data:
-              type: git
-              tag-pattern: ^sdk-([\d.]+)$
-              versions:
-                ==: 1.3.250.1
-
-          - type: git
-            url: https://github.com/KhronosGroup/glslang.git
-            tag: 13.1.1
-            commit: 36d08c0d940cf307a23928299ef52c7970d8cee6
-            dest: third_party/glslang
-            x-checker-data:
-              type: git
-              tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
 
   - name: mpv
     buildsystem: meson
@@ -476,6 +525,7 @@ modules:
       - -Dbuild-date=false
       - -Dlibmpv=true
       - -Dmanpage-build=disabled
+      - -Dvulkan-interop=enabled
     post-install:
       - mv /app/bin/mpv /app/bin/mpv-bin
       # save screenshots at xdg-pictures/mpv
@@ -483,11 +533,14 @@ modules:
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
-        tag: v0.36.0
-        commit: f4210f84906c3b00a65fba198c8127b6757b9350
+        # tag: v0.36.0
+        commit: 0286e7f2067d7e7d6b2528a49f9541b3fb852e4d
         x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
+          type: json
+          url: https://api.github.com/repos/mpv-player/mpv/commits
+          commit-query: first( .[].sha )
+          version-query: first( .[].sha )
+          timestamp-query: first( .[].commit.committer.date )
       - type: file
         path: io.mpv.Mpv.appdata.xml
       # Automatically update version and date in io.mpv.Mpv.appdata.xml
@@ -528,23 +581,23 @@ modules:
           version-query: .name
           url-query: .tarball_url
 
-  - name: bc
-    build-options:
-      no-debuginfo: true
-    buildsystem: autotools
-    sources:
-      - type: archive
-        url: https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
-        mirror-urls:
-          - https://mirrors.kernel.org/gnu/bc/bc-1.07.1.tar.gz
-          - https://mirrors.ocf.berkeley.edu/gnu/bc/bc-1.07.1.tar.gz
-          - https://ftpmirror.gnu.org/gnu/bc/bc-1.07.1.tar.gz
-        sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
-        x-checker-data:
-          type: html
-          url: https://ftp.gnu.org/gnu/bc/
-          version-pattern: bc-(\d\.\d+\.?\d*).tar.gz
-          url-template: https://ftp.gnu.org/gnu/bc/bc-$version.tar.gz
+  # - name: bc
+  #   build-options:
+  #     no-debuginfo: true
+  #   buildsystem: autotools
+  #   sources:
+  #     - type: archive
+  #       url: https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
+  #       mirror-urls:
+  #         - https://mirrors.kernel.org/gnu/bc/bc-1.07.1.tar.gz
+  #         - https://mirrors.ocf.berkeley.edu/gnu/bc/bc-1.07.1.tar.gz
+  #         - https://ftpmirror.gnu.org/gnu/bc/bc-1.07.1.tar.gz
+  #       sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
+  #       x-checker-data:
+  #         type: html
+  #         url: https://ftp.gnu.org/gnu/bc/
+  #         version-pattern: bc-(\d\.\d+\.?\d*).tar.gz
+  #         url-template: https://ftp.gnu.org/gnu/bc/bc-$version.tar.gz
 
   # This mpv plugin prevents screen blanking in GNOME (wayland) while playing media.
   - name: mpv_inhibit_gnome
