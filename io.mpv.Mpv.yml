@@ -24,6 +24,11 @@ finish-args:
   #  mpris support via dbus
   - --own-name=org.mpris.MediaPlayer2.mpv.*
   - --talk-name=org.gnome.SessionManager
+build-options:
+  strip: true
+  no-debuginfo: true
+  cflags: -DNDEBUG -g0
+  cxxflags: -DNDEBUG -g0
 
 cleanup:
   - /doc
