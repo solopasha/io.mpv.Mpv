@@ -1,6 +1,6 @@
 id: io.mpv.Mpv
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 command: mpv
 rename-desktop-file: mpv.desktop
@@ -428,39 +428,6 @@ modules:
             [[:digit:]]\{4\}-[[:digit:]]\{2\}-[[:digit:]]\{2\}$' /app/share/doc/spirv-tools/CHANGES)\"
             >> glslc/src/build-version.inc
           - echo \"glslang 36d08c0d940cf307a23928299ef52c7970d8cee6\" >> glslc/src/build-version.inc
-
-  - name: vulkan-headers
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DGLSLANG_INSTALL_DIR=/app
-      - -DVULKAN_HEADERS_INSTALL_DIR=/app
-      - -DCMAKE_BUILD_TYPE=Release
-    sources:
-      - type: git
-        url: https://github.com/KhronosGroup/Vulkan-Headers.git
-        tag: sdk-1.3.261.1
-        commit: 85c2334e92e215cce34e8e0ed8b2dce4700f4a50
-        x-checker-data:
-          type: git
-          tag-pattern: ^sdk-([\d.]+)$
-
-  - name: vulkan-loader
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DGLSLANG_INSTALL_DIR=/app
-      - -DVULKAN_HEADERS_INSTALL_DIR=/app
-      - -DCMAKE_BUILD_TYPE=Release
-      - -DBUILD_WSI_XCB_SUPPORT=On
-      - -DBUILD_WSI_XLIB_SUPPORT=On
-      - -DBUILD_WSI_WAYLAND_SUPPORT=On
-    sources:
-      - type: git
-        url: https://github.com/KhronosGroup/Vulkan-Loader.git
-        tag: sdk-1.3.261.1
-        commit: afdd025ead2b63b2c73d900ab128a2d3b512cdf0
-        x-checker-data:
-          type: git
-          tag-pattern: ^sdk-([\d.]+)$
 
   - name: ffmpeg
     cleanup:
