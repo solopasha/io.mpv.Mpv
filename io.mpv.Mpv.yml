@@ -560,14 +560,14 @@ modules:
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
-        # tag: v0.36.0
-        commit: 7cab30cec77b3fe4b8ca85b37664a3dc9b270aee
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/mpv-player/mpv/commits
-          commit-query: first( .[].sha )
-          version-query: first( .[].sha )
-          timestamp-query: first( .[].commit.committer.date )
+        tag: v0.36.0
+        commit: f4210f84906c3b00a65fba198c8127b6757b9350
+        # x-checker-data:
+        #   type: json
+        #   url: https://api.github.com/repos/mpv-player/mpv/commits
+        #   commit-query: first( .[].sha )
+        #   version-query: first( .[].sha )
+        #   timestamp-query: first( .[].commit.committer.date )
       - type: file
         path: io.mpv.Mpv.appdata.xml
       # Automatically update version and date in io.mpv.Mpv.appdata.xml
