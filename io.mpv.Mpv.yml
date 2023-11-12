@@ -90,7 +90,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 69bbbf77363ceb00ad2653a7729a5c9e8316e61f
+        commit: 113a168b792cd367822ec04cdc2ef32facd28efa
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -358,7 +358,8 @@ modules:
           parent-id: glslang-git-0
           commit-data-url: >-
             "https://github.com/KhronosGroup/glslang/raw/\($parent.new.tag//$parent.current.tag)/known_good.json"
-          commit-query: .commits[] | select(.name=="spirv-tools/external/spirv-headers") | .commit
+          commit-query: .commits[] | select(.name=="spirv-tools/external/spirv-headers")
+            | .commit
 
   - name: SPIRV-Tools
     buildsystem: cmake-ninja
