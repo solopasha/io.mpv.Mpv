@@ -423,6 +423,9 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v(\d{4}\.\d{1,2})$
+      - type: patch
+        paths:
+          - 1276.patch
       - type: shell
         commands:
           - sed '/examples/d;/third_party/d' -i CMakeLists.txt
@@ -532,7 +535,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
-        tag: v0.36.0
+        # tag: v0.36.0
         commit: f4210f84906c3b00a65fba198c8127b6757b9350
         # x-checker-data:
         #   type: json
