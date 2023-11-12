@@ -583,23 +583,23 @@ modules:
           version-query: .name
           url-query: .tarball_url
 
-  - name: bc
-    build-options:
-      no-debuginfo: true
-    buildsystem: autotools
-    sources:
-      - type: archive
-        url: https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
-        mirror-urls:
-          - https://mirrors.kernel.org/gnu/bc/bc-1.07.1.tar.gz
-          - https://mirrors.ocf.berkeley.edu/gnu/bc/bc-1.07.1.tar.gz
-          - https://ftpmirror.gnu.org/gnu/bc/bc-1.07.1.tar.gz
-        sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
-        x-checker-data:
-          type: html
-          url: https://ftp.gnu.org/gnu/bc/
-          version-pattern: bc-(\d\.\d+\.?\d*).tar.gz
-          url-template: https://ftp.gnu.org/gnu/bc/bc-$version.tar.gz
+  # - name: bc
+  #   build-options:
+  #     no-debuginfo: true
+  #   buildsystem: autotools
+  #   sources:
+  #     - type: archive
+  #       url: https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
+  #       mirror-urls:
+  #         - https://mirrors.kernel.org/gnu/bc/bc-1.07.1.tar.gz
+  #         - https://mirrors.ocf.berkeley.edu/gnu/bc/bc-1.07.1.tar.gz
+  #         - https://ftpmirror.gnu.org/gnu/bc/bc-1.07.1.tar.gz
+  #       sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
+  #       x-checker-data:
+  #         type: html
+  #         url: https://ftp.gnu.org/gnu/bc/
+  #         version-pattern: bc-(\d\.\d+\.?\d*).tar.gz
+  #         url-template: https://ftp.gnu.org/gnu/bc/bc-$version.tar.gz
 
   # This mpv plugin prevents screen blanking in GNOME (wayland) while playing media.
   - name: mpv_inhibit_gnome
