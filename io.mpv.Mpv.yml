@@ -90,7 +90,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 113a168b792cd367822ec04cdc2ef32facd28efa
+        commit: 43d0a19158ceabaa51b0462c1ebc97612b420a2e
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -111,8 +111,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.10.13/yt-dlp.tar.gz
-        sha256: 64944f4452a7657b5fb31ae55d823d9411a1a29f9c1071d33fa3e6286e20522a
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.11.14/yt-dlp.tar.gz
+        sha256: 50dff869a296fe515234f3427b6f95f562c889c2e60d3ba7e3b4bd5d73f4fa94
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
