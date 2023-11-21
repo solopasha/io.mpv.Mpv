@@ -238,8 +238,8 @@ modules:
         url: https://github.com/ccxvii/mujs.git
         mirror-urls:
           - http://git.ghostscript.com/mujs.git
-        tag: 1.3.3
-        commit: 57e3f01d5f29c5823be725d96284488edf5f8ae1
+        tag: 1.3.4
+        commit: a76d157bdaa9aec8de5ea5a362eed2f59139152d
         x-checker-data:
           type: git
           url: https://api.github.com/repos/ccxvii/mujs/tags
@@ -535,7 +535,7 @@ modules:
       - type: git
         url: https://github.com/mpv-player/mpv.git
         # tag: v0.36.0
-        commit: 6e161ff13fb83be9c5180e99427651975d33debf
+        commit: 5a12015c4bdeba42ddedf8f6986ffc92e1d38b46
         x-checker-data:
           type: json
           url: https://api.github.com/repos/mpv-player/mpv/commits
