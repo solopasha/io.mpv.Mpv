@@ -358,7 +358,8 @@ modules:
           parent-id: glslang-git-0
           commit-data-url: >-
             "https://github.com/KhronosGroup/glslang/raw/\($parent.new.tag//$parent.current.tag)/known_good.json"
-          commit-query: .commits[] | select(.name=="spirv-tools/external/spirv-headers")
+          commit-query:
+            .commits[] | select(.name=="spirv-tools/external/spirv-headers")
             | .commit
 
   - name: SPIRV-Tools
@@ -436,7 +437,7 @@ modules:
           - echo \"spirv-tools $(grep -m1 -o '^v[[:digit:]]\{4\}\.[[:digit:]]\(-dev\)\?
             [[:digit:]]\{4\}-[[:digit:]]\{2\}-[[:digit:]]\{2\}$' /app/share/doc/spirv-tools/CHANGES)\"
             >> glslc/src/build-version.inc
-          - echo \"glslang 36d08c0d940cf307a23928299ef52c7970d8cee6\" >> glslc/src/build-version.inc
+          - echo \"glslang f1cb8608b390a7f51b4ae0d62cd415ba47a59b86\" >> glslc/src/build-version.inc
 
   - name: ffmpeg
     cleanup:
