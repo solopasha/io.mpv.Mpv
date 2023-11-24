@@ -396,6 +396,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
+          versions:
+            ==: 13.0.0
       - type: patch
         paths:
           - 0001-pkg-config-compatibility.patch
