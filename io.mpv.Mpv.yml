@@ -358,8 +358,7 @@ modules:
           parent-id: glslang-git-0
           commit-data-url: >-
             "https://github.com/KhronosGroup/glslang/raw/\($parent.new.tag//$parent.current.tag)/known_good.json"
-          commit-query:
-            .commits[] | select(.name=="spirv-tools/external/spirv-headers")
+          commit-query: .commits[] | select(.name=="spirv-tools/external/spirv-headers")
             | .commit
 
   - name: SPIRV-Tools
@@ -538,7 +537,7 @@ modules:
       - type: git
         url: https://github.com/mpv-player/mpv.git
         # tag: v0.36.0
-        commit: 19b27341a9ebc48b4fa15704f3e282f1b405b68c
+        commit: bdf4dca50508994284d4a80b08dd73d3a739e8f1
         x-checker-data:
           type: json
           url: https://api.github.com/repos/mpv-player/mpv/commits
