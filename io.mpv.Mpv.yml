@@ -158,8 +158,8 @@ modules:
         url: https://git.linuxtv.org/v4l-utils.git
         mirror-urls:
           - https://github.com/gjasny/v4l-utils.git
-        tag: v4l-utils-1.24.1
-        commit: 8799081b143627c9c09dea0c60ad3d1cc17cc848
+        tag: v4l-utils-1.26.0
+        commit: b5467f9bd5b799051fd42b4a5c8808a37e70c429
         x-checker-data:
           type: git
           tag-pattern: ^v4l-utils-([\d.]+)$
@@ -358,8 +358,7 @@ modules:
           parent-id: glslang-git-0
           commit-data-url: >-
             "https://github.com/KhronosGroup/glslang/raw/\($parent.new.tag//$parent.current.tag)/known_good.json"
-          commit-query:
-            .commits[] | select(.name=="spirv-tools/external/spirv-headers")
+          commit-query: .commits[] | select(.name=="spirv-tools/external/spirv-headers")
             | .commit
 
   - name: SPIRV-Tools
@@ -538,7 +537,7 @@ modules:
       - type: git
         url: https://github.com/mpv-player/mpv.git
         # tag: v0.36.0
-        commit: 19b27341a9ebc48b4fa15704f3e282f1b405b68c
+        commit: 6898d57d98f1dbe2253585d39a8fa7b57a04d273
         x-checker-data:
           type: json
           url: https://api.github.com/repos/mpv-player/mpv/commits
