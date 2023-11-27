@@ -149,10 +149,9 @@ modules:
           tag-pattern: ^(\d\.\d{1,3}\.\d{1,2})$
 
   - name: libv4l2
+    buildsystem: meson
     config-opts:
-      - --disable-static
-      - --disable-bpf
-      - --with-udevdir=/app/lib/udev
+      - -Dudevdir=/app/lib/udev
     sources:
       - type: git
         url: https://git.linuxtv.org/v4l-utils.git
@@ -358,7 +357,8 @@ modules:
           parent-id: glslang-git-0
           commit-data-url: >-
             "https://github.com/KhronosGroup/glslang/raw/\($parent.new.tag//$parent.current.tag)/known_good.json"
-          commit-query: .commits[] | select(.name=="spirv-tools/external/spirv-headers")
+          commit-query:
+            .commits[] | select(.name=="spirv-tools/external/spirv-headers")
             | .commit
 
   - name: SPIRV-Tools
