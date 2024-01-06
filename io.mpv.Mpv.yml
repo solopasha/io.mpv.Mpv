@@ -423,9 +423,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v(\d{4}\.\d{1,2})$
-      - type: patch
-        paths:
-          - 1276.patch
       - type: shell
         commands:
           - sed '/examples/d;/third_party/d' -i CMakeLists.txt
