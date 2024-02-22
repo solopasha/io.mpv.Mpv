@@ -533,7 +533,7 @@ modules:
       - type: git
         url: https://github.com/mpv-player/mpv.git
         # tag: v0.36.0
-        commit: 531704e35d9a5a4b143072d25657509138b5607c
+        commit: ae1a4ed28a0b10a61bc055b65f1e7aa9a01a074d
         x-checker-data:
           type: json
           url: https://api.github.com/repos/mpv-player/mpv/commits
