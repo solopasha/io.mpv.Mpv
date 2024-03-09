@@ -334,8 +334,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/libjxl/libjxl.git
-        tag: v0.10.1
-        commit: 5f67ebced96df5c0696ec7d1822bdd3e4e11a1a1
+        tag: v0.10.2
+        commit: e1489592a770b989303b0edc5cc1dc447bbe0515
         disable-shallow-clone: true
         x-checker-data:
           type: git
@@ -418,8 +418,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/google/shaderc.git
-        tag: v2023.8
-        commit: e6edd6d48fa5bdd9d176794c6810fae7f8e938e1
+        tag: v2024.0
+        commit: d792558a8902cb39b1c237243cc4edab226513a5
         x-checker-data:
           type: git
           tag-pattern: ^v(\d{4}\.\d{1,2})$
@@ -495,8 +495,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/vapoursynth/vapoursynth.git
-        tag: R65
-        commit: 3157049549a0940359b37004aeeeebd8f1db665e
+        tag: R66
+        commit: fe6c67cdb17f41160c79434f0240077f74de9fd1
         x-checker-data:
           type: git
           tag-pattern: ^R([\d.]+)$
@@ -533,7 +533,7 @@ modules:
       - type: git
         url: https://github.com/mpv-player/mpv.git
         # tag: v0.36.0
-        commit: 665a47209869d7a0c4ea860b28910fcd6ca874c8
+        commit: 120b0ac4125859fc5bfb555e73ffd4f8905fe881
         x-checker-data:
           type: json
           url: https://api.github.com/repos/mpv-player/mpv/commits
