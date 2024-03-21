@@ -268,7 +268,7 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/x264.git
-        commit: 585e01997f0c7e6d72c8ca466406d955c07de912
+        commit: 7ed753b10a61d0be95f683289dfb925b800b0676
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
@@ -533,7 +533,7 @@ modules:
       - type: git
         url: https://github.com/mpv-player/mpv.git
         # tag: v0.36.0
-        commit: 8c1117b2cb0f5f01e1ca045e7ba426e2e9c4771e
+        commit: 91489c946689763c36e4d720d6048037252818f7
         x-checker-data:
           type: json
           url: https://api.github.com/repos/mpv-player/mpv/commits
