@@ -52,8 +52,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
-        tag: libXmu-1.2.0
-        commit: cc378e4f0cc2ab5b66d378050ba4956612a01197
+        tag: libXmu-1.2.1
+        commit: 792f80402ee06ce69bca3a8f2a84295999c3a170
         x-checker-data:
           type: git
           tag-pattern: ^libXmu-([\d.]+)$
@@ -90,7 +90,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: d06beb0480c5d1eb53b3343e78063950275aa281
+        commit: b3e498738962cdb08686f3dd612cf060382d88f2
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -111,8 +111,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.03.10/yt-dlp.tar.gz
-        sha256: 1db8eade9e860543b655f5f973e26727ac2cc20874dc6fed9a3e78a4a05ee989
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.04.09/yt-dlp.tar.gz
+        sha256: 59d3caed5cc899e486a7b8873f6143b6a1d22c5b5c05009b709ca0104f5d9eed
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -255,8 +255,8 @@ modules:
         url: https://github.com/FFmpeg/nv-codec-headers.git
         mirror-urls:
           - https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
-        tag: n12.1.14.0
-        commit: 1889e62e2d35ff7aa9baca2bceb14f053785e6f1
+        tag: n12.2.72.0
+        commit: c69278340ab1d5559c7d7bf0edf615dc33ddbba7
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]+)$
@@ -287,8 +287,8 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        tag: '3.5'
-        commit: f0c1022b6be121a753ff02853fbe33da71988656
+        tag: '3.6'
+        commit: aa7f602f7592eddb9d87749be7466da005b556ee
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -469,8 +469,8 @@ modules:
         url: https://github.com/FFmpeg/FFmpeg.git
         mirror-urls:
           - https://git.ffmpeg.org/ffmpeg.git
-        commit: e38092ef9395d7049f871ef4d5411eb410e283e0
-        tag: n6.1.1
+        commit: 083443d67cb159ce469e5d902346b8d0c2cd1c93
+        tag: n7.0
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
@@ -533,7 +533,7 @@ modules:
       - type: git
         url: https://github.com/mpv-player/mpv.git
         # tag: v0.36.0
-        commit: 2af3a6e294e829191dfa0c41396ecd6384d405d9
+        commit: 1a495451ab13ada7d4134258accaa6927262d554
         x-checker-data:
           type: json
           url: https://api.github.com/repos/mpv-player/mpv/commits
